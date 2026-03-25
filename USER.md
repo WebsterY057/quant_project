@@ -2,11 +2,11 @@
 
 _Learn about the person you're helping. Update this as you go._
 
-- **Name:**
-- **What to call them:**
+- **Name:** 未提供
+- **What to call them:** 未提供
 - **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:** 偏好使用中文交流
+- **Timezone:** Asia/Shanghai (GMT+8)
+- **Notes:** 偏好使用中文交流，在区块链量化交易公司从事加密货币数据分析
 
 ## Context
 
