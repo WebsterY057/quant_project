@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-26",
+  "description": "加密货币量化交易术语库",
+
+  "categories": {
+
+    "token状态": {
+      "开启": {
+        "zh": "开启",
+        "description": "允许该 token 进行买卖交易，策略正常运行"
+      },
+      "只卖": {
+        "zh": "只卖",
+        "description": "禁止买入，只允许卖出。适用于：行情不好或策略表现差的情况，等待清仓"
+      },
+      "关闭": {
+        "zh": "关闭",
+        "description": "完全停止交易，该 token 不再参与策略"
+      }
+    },
+
+    "交易所相关": {
+      "CEX": {
+        "zh": "中心化交易所",
+        "examples": ["Binance", "OKX", "Coinbase"],
+        "description": "由公司运营的加密货币交易平台，用户将资金存入交易所托管。订单簿模式，有明确的买一价(Bid1)和卖一价(Ask1)。"
+      },
+      "DEX": {
+        "zh": "去中心化交易所",
+        "examples": ["PancakeSwap", "Uniswap"],
+        "description": "基于智能合约的交易所，无需托管。自动做市商(AMM)模式，通过流动性池提供交易对手。"
+      },
+      "Bid1/Ask1": {
+        "zh": "买一价/卖一价",
+        "description": "订单簿上当前最高买入价和最低卖出价。策略触发信号的参考价格。"
+      }
+    },
+
+    "策略相关": {
+      "套利": {
+        "zh": "CEX-DEX 套利",
+        "description": "当CEX和DEX之间出现价格差时，在低价处买入、高价处卖出获利。触发条件：两边哪边满足条件就触发哪边。"
+      },
+      "价格阈值": {
+        "zh": "价格阈值",
+        "type": "strategy_param",
+        "description": "触发交易的价差门槛。价差需达到阈值才执行交易。"
+      },
+      "捆绑费": {
+        "zh": "捆绑费",
+        "formula": "bundle = wbnb_bundle × wbnb_price",
+        "unit": "USD",
+        "description": "使用48.club或BlockRazor等捆绑平台的服务费，以BNB计价折算为USD。"
+      },
+      "捆绑比例": {
+        "zh": "捆绑比例",
+        "type": "strategy_param",
+        "formula": "bundle = bundle_rate × profit_virtual_fee",
+        "description": "用户配置的比例参数，最低设置0.05。注意：bundle_rate字段含义仍需向业务方确认。"
+      },
+      "最大持仓": {
+        "zh": "最大持仓",
+        "type": "strategy_param",
+        "description": "token持仓上限，用于风险控制。超过则不触发新交易。"
+      },
+      "Bundle": {
+        "zh": "捆绑平台",
+        "platforms": ["48.club", "BlockRazor"],
+        "description": "将多笔交易打包成一组提交区块链的服务商，提供MEV保护和原子性执行。"
+      }
+    },
+
+    "利润计算": {
+      "单笔盈亏": {
+        "field": "单笔盈亏 (single_PL)",
+        "description": "单笔交易的净盈亏，已扣除滑点，不含捆绑费和Gas费"
+      },
+      "理论利润": {
+        "field": "理论利润 (profit_virtual_fee)",
+        "formula": "|稳定币变化量u| × 价差",
+        "description": "基于触发时价差计算的理论应得利润"
+      },
+      "净利润": {
+        "formula": "单笔盈亏 - 捆绑费 - gas费",
+        "description": "扣除所有成本后的实际收益"
+      },
+      "净Alpha": {
+        "formula": "净利润 - 理论利润",
+        "description": "相对理论利润的超额收益或损失，正值表示跑赢理论"
+      }
+    },
+
+    "AMM与滑点": {
+      "AMM": {
+        "zh": "自动做市商",
+        "description": "DEX的核心机制，通过数学公式(x×y=k)由流动性池自动定价"
+      },
+      "流动性池": {
+        "zh": "流动性池",
+        "fields": ["稳定币库存", "token库存"],
+        "description": "DEX中存放两种资产供交易的池子，池子越大流动性越好"
+      },
+      "滑点": {
+        "zh": "滑点",
+        "description": "预期成交价与实际成交价的差异。交易规模越大、池子越小，滑点越大"
+      },
+      "价差": {
+        "field": "价差 (price_diff)",
+        "description": "CEX价格与DEX价格的差值，以小数形式存储(0.001=0.1%)"
+      }
+    },
+
+    "MEV相关": {
+      "MEV": {
+        "zh": "最大可提取价值",
+        "full_name": "Maximal Extractable Value",
+        "description": "验证者/矿工通过调整交易顺序从用户交易中提取的价值"
+      },
+      "Frontrunning": {
+        "zh": "抢先交易",
+        "description": "机器人检测到用户交易后，在同一区块中插入自己的交易推高价格"
+      },
+      "Backrunning": {
+        "zh": "尾随交易",
+        "description": "在目标交易后插入交易，利用价格变动获利"
+      },
+      "Sandwich": {
+        "zh": "三明治攻击",
+        "description": "在目标交易前后都插入交易，前后夹击获取收益"
+      }
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-27",
+  "file_naming_convention": {
+    "命名格式": "{合约}_{数据类别}_{日期}.xlsx",
+    "合约": {
+      "k1": "跨1合约",
+      "k2": "跨2合约"
+    },
+    "数据类别": {
+      "订单数据": {
+        "时间精度": "毫秒",
+        "日期重复": true,
+        "说明": "每笔交易明细"
+      },
+      "token数据": {
+        "时间精度": "日",
+        "日期重复": true,
+        "说明": "按token汇总的每日数据，每日多条"
+      },
+      "日报数据": {
+        "时间精度": "日",
+        "日期重复": false,
+        "说明": "整体汇总，每日一条"
+      }
+    },
+    "示例": [
+      "k1_订单数据_2026-03-24.xlsx",
+      "k2_token数据_2026-03-24.xlsx",
+      "k1_日报数据_2026-03-24.xlsx"
+    ]
+  },
+
+  "raw_file_naming": {
+    "订单数据": "k{num}_export_orders_YYYYMMDD.xlsx",
+    "token数据": "export_YYYY-MM-DD.csv",
+    "日报数据": "export_YYYY-MM-DD.csv"
+  },
+
+  "data_type_fields": {
+    "订单数据": {
+      "列数": 66,
+      "字段": "见 column_mappings（66列英文）"
+    },
+    "token数据": {
+      "列数": 31,
+      "字段": [
+        "日期", "Token名称", "稳库存u", "手续费", "虚拟持仓配置",
+        "最大持仓价值", "最大持仓", "仓位指数", "当日利润", "7日利润",
+        "总利润", "状态", "交易次数", "1小时订单量", "当日非首位订单率",
+        "交易量", "U类型交易量", "BNB类型交易量", "成功率", "清空数据",
+        "胜率", "价格阈值", "买捆绑系数", "卖捆绑系数", "触发交易所",
+        "触发方式", "价格指数", "今日总gas费", "捆绑费", "bsc地址",
+        "交易对理论利润累计值"
+      ],
+      "状态字段说明": {
+        "开启": "允许该币进行买卖交易，策略正常运行",
+        "只卖": "禁止买入，只允许卖出。适用于：行情不好或策略表现差，等待清仓的币",
+        "关闭": "完全停止交易，该币不再参与策略"
+      }
+    },
+    "日报数据": {
+      "列数": 8,
+      "字段": [
+        "今日总盈亏", "总交易量", "订单量", "胜率",
+        "今日总gas费", "捆绑费", "wbnb价格", "Wbnb盈亏"
+      ],
+      "特殊处理": "原始数据无日期列，需从文件名提取并插入首列"
+    }
+  },
+
+  "file_spec": {
+    "原始导出": {
+      "命名格式": "k1_export_orders_YYYYMMDD.xlsx",
+      "列数": 66,
+      "列名语言": "英文"
+    },
+    "标准模板": {
+      "命名格式": "k1_YYYY-MM-DD.xlsx",
+      "列数": 56,
+      "列名语言": "中文",
+      "基准文件": "k1_2026-03-24.xlsx"
+    }
+  },
+
+  "processing_steps": {
+    "step1_列名标准化": {
+      "说明": "英文列名 → 中文列名",
+      "完整映射": {
+        "id": "(删除)",
+        "time": "时间",
+        "block": "区块号",
+        "path": "交易对",
+        "position": "位置",
+        "direction": "交易方向",
+        "maxpair_stable_reserve": "稳定币库存",
+        "maxpair_token_reserve": "token库存",
+        "token_amount": "token变化量",
+        "stable_amount": "稳定币变化量",
+        "stable_amount_u": "稳定币变化量u",
+        "transRate": "交易占比",
+        "status": "状态",
+        "token_address": "token地址",
+        "stable_address": "稳定币地址",
+        "pair": "交易对地址",
+        "token_decimals": "(删除)",
+        "stable_decimals": "(删除)",
+        "token_holding": "token持仓",
+        "holding_rate": "持仓占比",
+        "token_value": "token持仓价值",
+        "stable_holding": "稳定币持仓",
+        "stable_value": "稳定币持仓价值",
+        "last_token": "token上笔持仓",
+        "last_value": "token上笔持仓价值",
+        "last_stable": "稳定币上笔持仓",
+        "last_stable_value": "稳定币上笔持仓价值",
+        "token_maxpair": "token-w1最大交易对",
+        "token_maxpair_stable_address": "token_w1最大交易对稳定币地址",
+        "reserve0": "token最大交易对稳定币库存",
+        "reserve1": "token最大交易对token库存",
+        "w1_uw_maxpair": "(删除)",
+        "w1_reserve": "(删除)",
+        "w1_uw_reserve": "(删除)",
+        "w2_uw_maxpair": "(删除)",
+        "w2_reserve": "(删除)",
+        "w2_uw_reserve": "(删除)",
+        "wbnb_price": "WBNB价格",
+        "gasprice": "gasprice",
+        "wbnb_gas": "wbnb_gas费",
+        "gasfee": "gas费u",
+        "gaslimit": "gaslimit",
+        "wbnb_bundle": "wbnb_bundle",
+        "bundle": "捆绑费",
+        "single_PL": "单笔盈亏",
+        "totalPL": "今日交易对盈亏",
+        "contract_address": "合约地址",
+        "pair_type": "交易对类型",
+        "method": "method",
+        "hash": "交易hash",
+        "hash_num": "(删除)",
+        "hold_reserve_rate": "虚拟持仓占比",
+        "stable_singlePL": "单笔稳定币自增长盈亏",
+        "stable_totalPL": "今日稳定币盈亏",
+        "bnb_amount": "BNB剩余持仓",
+        "bnb_value": "BNB剩余持仓价值",
+        "last_bnb_amount": "BNB上笔剩余持仓",
+        "last_bnb_value": "BNB上笔剩余持仓价值",
+        "bnb_singlePL": "BNB单笔自增长盈亏",
+        "bnb_totalPL": "BNB今日盈亏",
+        "profit_virtual": "带手续费理论利润",
+        "bundle_rate": "(删除)",
+        "profit_virtual_fee": "理论利润",
+        "bundle_rate_fee": "捆绑比例",
+        "price_diff": "价差",
+        "order_rate": "订单交易对手续费"
+      }
+    },
+
+    "step2_删除多余列": {
+      "说明": "66列 → 54列，删除12列冗余字段",
+      "删除的列": [
+        {"列名": "id", "原因": "序号冗余，区号+hash已唯一标识"},
+        {"列名": "token_decimals", "原因": "token精度不影响分析"},
+        {"列名": "stable_decimals", "原因": "稳定币精度不影响分析"},
+        {"列名": "hash_num", "原因": "hash编号冗余"},
+        {"列名": "w1_uw_maxpair", "原因": "W1相关字段，分析中未使用"},
+        {"列名": "w1_reserve", "原因": "W1相关字段，分析中未使用"},
+        {"列名": "w1_uw_reserve", "原因": "W1相关字段，分析中未使用"},
+        {"列名": "w2_uw_maxpair", "原因": "W2相关字段，分析中未使用"},
+        {"列名": "w2_reserve", "原因": "W2相关字段，分析中未使用"},
+        {"列名": "w2_uw_reserve", "原因": "W2相关字段，分析中未使用"},
+        {"列名": "bundle_rate", "原因": "已废弃，使用带手续费的捆绑比例"},
+        {"列名": "profit_virtual_fee", "原因": "已废弃，使用带手续费理论利润"}
+      ]
+    },
+
+    "step3_数据类型校正": {
+      "说明": "确保各字段类型正确",
+      "校正规则": [
+        {"字段": "时间", "类型": "datetime", "方法": "pd.to_datetime()"},
+        {"字段": "区块号", "类型": "int", "方法": "astype(int)"},
+        {"字段": "状态", "类型": "int", "方法": "astype(int)"},
+        {"字段": "gasprice", "类型": "float", "方法": "pd.to_numeric()"},
+        {"字段": "价格/价值字段", "类型": "float", "方法": "pd.to_numeric()"}
+      ]
+    },
+
+    "step4_异常值处理": {
+      "说明": "处理缺失值和极端异常",
+      "规则": [
+        {"字段": "maxpair_stable_reserve = 0", "处理": "约59%数据为空，分析时过滤或标注"},
+        {"字段": "状态 ≠ 1", "处理": "失败订单单独分析（待获取数据）"},
+        {"字段": "单笔盈亏极端值", "处理": "±3σ以外标记为异常"}
+      ]
+    },
+
+    "step5_字段验算": {
+      "说明": "根据业务逻辑验算关键字段正确性",
+      "验算规则": [
+        {
+          "字段": "捆绑费",
+          "公式": "bundle ≈ wbnb_bundle × wbnb_price",
+          "容差": 0.01
+        },
+        {
+          "字段": "理论利润",
+          "公式": "profit_virtual_fee ≈ |stable_amount_u| × price_diff",
+          "容差": 0.01
+        }
+      ]
+    }
+  },
+
+  "step6_字段单位校正": {
+    "说明": "原始导出数据的字段存在精度偏差或单位问题，需按规则校正",
+    "校正规则": [
+      {
+        "字段": "BNB剩余持仓",
+        "原始值处理": "除以 1e18",
+        "原因": "原始值单位为 wei，实际值 = 原始值 / 10^18"
+      },
+      {
+        "字段": "BNB上笔剩余持仓",
+        "原始值处理": "除以 1e18",
+        "原因": "原始值单位为 wei，实际值 = 原始值 / 10^18"
+      },
+      {
+        "字段": "token持仓",
+        "原始值处理": "除以 10^token_decimals",
+        "原因": "原始值单位为 wei，实际值 = 原始值 / 10^decimals（不同token decimals不同）"
+      },
+      {
+        "字段": "稳定币持仓",
+        "原始值处理": "除以 10^stable_decimals",
+        "原因": "原始值单位为 wei，实际值 = 原始值 / 10^decimals（稳定币通常为18位）"
+      },
+      {
+        "字段": "wbnb_gas费",
+        "原始值处理": "省略了小数点4位后的值",
+        "原因": "显示精度限制，实际值以gas费u为准",
+        "替代字段": "gas费u（已换算为USD，推荐使用）"
+      }
+    ]
+  },
+
+  "字段含义说明": {
+    "method": {
+      "含义": "合约内执行的某个方法签名经 Keccak-256 hash 算法后的值",
+      "用途": "标识调用的具体合约方法（买入/卖出等）"
+    },
+    "gaslimit": {
+      "含义": "用户对单笔交易最大计算工作量的预估",
+      "单位": "Gas",
+      "说明": "类似汽油上限，决定单笔交易最多消耗多少Gas"
+    }
+  },
+
+  "异常情况说明": {
+    "maxpair_stable_reserve为0": {
+      "原因": "数据中59%的记录该字段为空",
+      "影响": "无法通过该字段计算流动性",
+      "建议": "分析时过滤，或使用reserve0/reserve1作为替代"
+    },
+    "bundle_rate含义不明": {
+      "原因": "与bundle几乎不相关",
+      "影响": "该字段含义需向业务方确认",
+      "处理": "分析中不使用该字段"
+    }
+  }
+}

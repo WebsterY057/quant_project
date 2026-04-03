@@ -1,0 +1,210 @@
+{
+  "version": "2.0",
+  "last_updated": "2026-03-27",
+  "description": "知识库总清单，记录所有文件和条目",
+  "maintainer": "openclaw_agent",
+
+  "directory_structure": {
+    "db/": "知识库根目录",
+    "db/files/": "数据文件存储",
+    "db/files/订单数据/": "订单数据（清洗后）",
+    "db/files/token数据/": "token维度数据",
+    "db/files/日报数据/": "日报汇总数据",
+    "db/files/images/": "图片文件存储",
+    "db/files/docs/": "文档/报告存储",
+    "db/scripts/": "分析脚本库（公式函数）",
+    "db/": "配置文件"
+  },
+
+  "entries": [
+    {
+      "id": "col_001",
+      "type": "structured",
+      "category": "column_mappings",
+      "file": "字段映射.json",
+      "summary": "数据列名字段中英文映射表（订单数据 54列已标准化）",
+      "tags": ["字段", "映射", "列名", "中英文"],
+      "created": "2026-03-26",
+      "updated": "2026-03-27"
+    },
+    {
+      "id": "term_001",
+      "type": "structured",
+      "category": "trading_terms",
+      "file": "交易术语库.json",
+      "summary": "加密货币量化交易术语库",
+      "tags": ["术语", "交易", "加密货币", "DEX", "CEX", "AMM", "MEV"],
+      "created": "2026-03-26"
+    },
+    {
+      "id": "cfg_001",
+      "type": "structured",
+      "category": "strategy_config",
+      "file": "策略参数配置.json",
+      "summary": "策略参数配置，包含Gas设置/价格阈值/捆绑比例等",
+      "tags": ["策略", "参数", "配置", "捆绑平台"],
+      "created": "2026-03-26",
+      "updated": "2026-03-27"
+    },
+    {
+      "id": "alpha_001",
+      "type": "structured",
+      "category": "alpha_analysis",
+      "file": "alpha_归因分析.json",
+      "summary": "Alpha全栈归因分析（L3数据层/L2路由层/L1执行层），共14个症状归因",
+      "tags": ["alpha", "归因", "L3", "L2", "L1", "滑点", "捆绑费"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "proc_001",
+      "type": "structured",
+      "category": "data_processing",
+      "file": "数据处理标准化流程.json",
+      "summary": "三类数据（订单/token/日报）的标准化处理流程，含54列映射和wei换算规则",
+      "tags": ["数据处理", "标准化", "清洗", "wei换算"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "data_001",
+      "type": "data",
+      "category": "order_data",
+      "file": "files/订单数据/k1_订单数据_2026-03-24.csv",
+      "format": "CSV",
+      "summary": "K1订单数据，53,755笔，清洗后54列，含slippage/gap计算",
+      "tags": ["k1", "订单数据", "2026-03-24"],
+      "created": "2026-03-27",
+      "source": "原始: k1_export_orders_20260324.xlsx"
+    },
+    {
+      "id": "data_002",
+      "type": "data",
+      "category": "order_data",
+      "file": "files/订单数据/k2_订单数据_2026-03-24.csv",
+      "format": "CSV",
+      "summary": "K2订单数据，65,666笔，清洗后54列",
+      "tags": ["k2", "订单数据", "2026-03-24"],
+      "created": "2026-03-27",
+      "source": "原始: k2_export_orders_20260324.xlsx"
+    },
+    {
+      "id": "data_003",
+      "type": "data",
+      "category": "token_data",
+      "file": "files/token数据/k1_token数据_2026-03-27.csv",
+      "format": "CSV",
+      "summary": "K1 token数据，101个token，当日汇总，含成功率/胜率/捆绑费分析",
+      "tags": ["k1", "token数据", "2026-03-27"],
+      "created": "2026-03-27",
+      "source": "原始: export_2026-03-27.csv"
+    },
+    {
+      "id": "data_004",
+      "type": "data",
+      "category": "token_data",
+      "file": "files/token数据/k2_token数据_2026-03-27.csv",
+      "format": "CSV",
+      "summary": "K2 token数据，101个token",
+      "tags": ["k2", "token数据", "2026-03-27"],
+      "created": "2026-03-27",
+      "source": "原始: export_2026-03-27.csv"
+    },
+    {
+      "id": "data_005",
+      "type": "data",
+      "category": "daily_data",
+      "file": "files/日报数据/k1_日报数据_2026-03-26.csv",
+      "format": "CSV",
+      "summary": "K1日报数据，81天汇总，含总盈亏/总费用/胜率",
+      "tags": ["k1", "日报数据", "2026-03-26"],
+      "created": "2026-03-27",
+      "source": "原始: export_2026-03-26.csv"
+    },
+    {
+      "id": "doc_003",
+      "type": "text",
+      "category": "分析报告",
+      "file": "files/docs/alpha全栈归因分析_L3_L2_L1.md",
+      "summary": "Alpha全栈归因分析框架文档",
+      "tags": ["alpha", "归因", "L3", "L2", "L1"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "doc_004",
+      "type": "text",
+      "category": "分析报告",
+      "file": "files/docs/数据处理标准化流程.md",
+      "summary": "数据处理流程文档（含代码模板）",
+      "tags": ["数据处理", "标准化", "清洗"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "script_001",
+      "type": "script",
+      "category": "formulas",
+      "file": "scripts/core_formulas.py",
+      "summary": "核心公式脚本：calc_gap/calc_slippage/calc_alpha/verify_* 共7个函数",
+      "tags": ["公式", "slippage", "gap", "alpha", "验算"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "script_002",
+      "type": "script",
+      "category": "data_loader",
+      "file": "scripts/data_loader.py",
+      "summary": "数据加载脚本：load_order_data/load_token_data/load_daily_data",
+      "tags": ["数据加载", "清洗"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "script_003",
+      "type": "script",
+      "category": "data_processor",
+      "file": "scripts/data_processor.py",
+      "summary": "数据处理流水线：process_data() 支持订单/token/日报三类数据",
+      "tags": ["数据处理", "ETL", "清洗", "标准化"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "script_004",
+      "type": "script",
+      "category": "analysis_registry",
+      "file": "scripts/ANALYSIS_REGISTRY.md",
+      "summary": "分析流程注册表：步骤↔脚本↔数据来源映射",
+      "tags": ["分析流程", "规范", "数据溯源"],
+      "created": "2026-03-27"
+    },
+    {
+      "id": "skill_001",
+      "type": "skill",
+      "category": "data_processing",
+      "file": "data-processing.skill/SKILL.md",
+      "summary": "数据处理 skill：封装 data_processor.py，提供命令行和 Python 调用方式",
+      "tags": ["skill", "数据处理", "ETL", "标准化"],
+      "created": "2026-03-27"
+    }
+  ],
+
+  "metadata": {
+    "total_entries": 15,
+    "by_type": {
+      "structured": 5,
+      "data": 5,
+      "script": 3,
+      "text": 2
+    },
+    "by_category": {
+      "column_mappings": 1,
+      "trading_terms": 1,
+      "strategy_config": 1,
+      "alpha_analysis": 1,
+      "data_processing": 1,
+      "order_data": 2,
+      "token_data": 2,
+      "daily_data": 1,
+      "分析报告": 2,
+      "formulas": 1,
+      "data_loader": 1,
+      "analysis_registry": 1
+    }
+  }
+}
