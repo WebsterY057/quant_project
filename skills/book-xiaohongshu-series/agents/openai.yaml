@@ -1,0 +1,4 @@
+interface:
+  display_name: "Book Xiaohongshu Series"
+  short_description: "Generate book-based Xiaohongshu series ledgers and daily posts."
+  default_prompt: "为指定书籍建立小红书主题台账，并按 pending 队列生成今天的一篇成稿。"
