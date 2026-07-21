@@ -1,3 +1,19 @@
+# 数据目录
+数据/
+数据_*/
+
+# Python虚拟环境
+venv/
+*.pyc
+__pycache__/
+
+# macOS
 .DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# 临时文件
 *.tmp
 *.log
