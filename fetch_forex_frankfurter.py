@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 def fetch_forex_frankfurter(base: str, quote: str, start: str, end: str, output_dir: Path) -> pd.DataFrame:
-    print(f"Fetching {base}/{quote}...")
+    print(f"Fetching {bsase}/{quote}...")
 
     try:
         url = f"https://api.frankfurter.app/{start}..{end}"
