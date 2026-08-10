@@ -7,7 +7,7 @@
 | 板块 | 标的 | 来源 | 历史范围 | 存储 |
 |---|---|---|---|---|
 | 美股 | AAPL | IBKR / RustFS | 2026-07-07—2026-08-07 | DuckDB |
-| 代币化美股 | AAPL-USDT-SWAP | OKX 历史 K 线 | 2026-07-07—2026-08-07 | SQLite |
+| 代币化美股 | AAPLUSDT | Binance TradFi 永续历史 K 线 | 2026-07-07—2026-08-07 | SQLite |
 | 加密货币 | BTC-USDT | OKX 历史 K 线 | 2026-07-23—2026-07-30 | SQLite |
 | 外汇 | XAUUSD | Dukascopy ticks | 2026-05-29—2026-06-29 | SQLite |
 
@@ -15,7 +15,7 @@
 
 ## 目录
 
-- `collectors/`：IBKR/RustFS 采集、OKX 历史回补与可选实时采集、Dukascopy 下载。
+- `collectors/`：IBKR/RustFS 采集、Binance/OKX 历史回补与可选实时采集、Dukascopy 下载。
 - `aggregation/`：IBKR 和 XAUUSD 的 1m/5m 聚合及指标落库。
 - `configs/`：不含密钥的配置模板。
 - `web/`：Flask + ECharts 四板块页面，默认端口 5011。
@@ -34,13 +34,20 @@ cp web/config.example.yaml web/config.yaml
 
 将示例配置复制为实际配置后再填写路径。密钥只通过环境变量提供，参考 `.env.example`，不要提交真实 `.env`。
 
-## OKX 历史数据
+## Binance 代币化美股永续历史数据
 
 ```bash
-cp configs/config.okx_tokenized.example.yaml config.okx_tokenized.yaml
+cp configs/config.binance_tokenized.example.yaml config.binance_tokenized.yaml
+.venv/bin/python collectors/backfill_binance_history.py --config config.binance_tokenized.yaml
+```
+
+时间使用 Binance K 线开盘时间（event time，UTC）；`volume` 是 AAPL 数量，`trade_count` 是该分钟真实成交笔数。
+
+## OKX 加密货币历史数据
+
+```bash
 cp configs/config.okx_btc_history.example.yaml config.okx_btc_history.yaml
 
-.venv/bin/python collectors/backfill_okx_history.py --config config.okx_tokenized.yaml
 .venv/bin/python collectors/backfill_okx_history.py --config config.okx_btc_history.yaml
 ```
 

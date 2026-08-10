@@ -21,10 +21,10 @@ boards:
     max_points: 20000
   tokenized_equity:
     label: "代币化美股"
-    symbol: "AAPL-USDT-SWAP"
-    source_label: "OKX · TOKENIZED EQUITY"
+    symbol: "AAPLUSDT"
+    source_label: "BINANCE · TRADIFI PERPETUAL"
     backend: "okx_sqlite"
-    sqlite_path: "../data/okx_aapl_tokenized.db"
+    sqlite_path: "../data/binance_aapl_tokenized.db"
     tables: {1m: "klines_1m", 5m: "klines_5m"}
     date_start: "2026-07-07"
     date_end: "2026-08-07"
