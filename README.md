@@ -1,5 +1,9 @@
 # 外汇量化策略 - VWAP双均线交叉
 
+## 新增：多市场指标数据流水线
+
+`market_indicator_pipeline/` 包含从 IBKR/RustFS、OKX、Dukascopy 数据采集与历史回补，到 DuckDB/SQLite 聚合和四板块 MT4 指标可视化的完整项目。详见 [`market_indicator_pipeline/README.md`](market_indicator_pipeline/README.md)。
+
 ## 策略说明
 
 ### 策略逻辑

@@ -1,0 +1,5 @@
+duckdb>=1.5
+Flask>=3.0
+PyYAML>=6.0
+certifi>=2025.0
+websockets>=15.0

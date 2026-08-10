@@ -1,0 +1,60 @@
+server:
+  host: "127.0.0.1"
+  port: 5011
+
+remote:
+  host: "YOUR_DUCKDB_SERVER"
+  user: "YOUR_SSH_USER"
+  python: "python3"
+  password_env: "AAPL_VIS_REMOTE_PASSWORD"
+  duckdb_path: "/path/on/server/ibkr_us_equity.duckdb"
+
+boards:
+  us_equity:
+    label: "美股"
+    symbol: "AAPL"
+    source_label: "IBKR · US EQUITY · L1 TRADE"
+    backend: "remote_duckdb"
+    tables: {1m: "research.aapl_trade_bars_1m", 5m: "research.aapl_trade_bars_5m"}
+    date_start: "2026-07-07"
+    date_end: "2026-08-07"
+    max_points: 20000
+  tokenized_equity:
+    label: "代币化美股"
+    symbol: "AAPL-USDT-SWAP"
+    source_label: "OKX · TOKENIZED EQUITY"
+    backend: "okx_sqlite"
+    sqlite_path: "../data/okx_aapl_tokenized.db"
+    tables: {1m: "klines_1m", 5m: "klines_5m"}
+    date_start: "2026-07-07"
+    date_end: "2026-08-07"
+    max_points: 20000
+  crypto:
+    label: "加密货币"
+    symbol: "BTC-USDT"
+    source_label: "OKX · CRYPTO · HISTORICAL CANDLES"
+    backend: "okx_sqlite"
+    sqlite_path: "../data/okx_btc_history.db"
+    tables: {1m: "klines_1m", 5m: "klines_5m"}
+    date_start: "2026-07-23"
+    date_end: "2026-07-30"
+    max_points: 20000
+  forex:
+    label: "外汇"
+    symbol: "XAUUSD"
+    source_label: "DUKASCOPY · FOREX · TICK"
+    backend: "local_sqlite"
+    sqlite_path: "../data/dukascopy_xauusd_ticks.sqlite"
+    tables: {1m: "bars_1m", 5m: "bars_5m"}
+    date_start: "2026-05-29"
+    date_end: "2026-06-29"
+    max_points: 20000
+
+data:
+  default_board: "us_equity"
+  default_interval: "5m"
+
+indicators:
+  heiken_ashi: {ma1_method: "SMMA", ma1_period: 6, ma2_method: "LWMA", ma2_period: 2}
+  zigzag: {depth: 30, deviation: 3, backstep: 3, price_tick_size: 0.01, show_unconfirmed: true, live_reversal_percent: 0.1, live_reversal_abs: 0.0}
+  parabolic_sar: {step: 0.016, maximum: 0.2}

@@ -17,3 +17,18 @@ __pycache__/
 # 临时文件
 *.tmp
 *.log
+
+# Market indicator pipeline runtime data
+market_indicator_pipeline/.venv/
+market_indicator_pipeline/data/*
+!market_indicator_pipeline/data/.gitkeep
+market_indicator_pipeline/logs/*
+!market_indicator_pipeline/logs/.gitkeep
+market_indicator_pipeline/run/*
+!market_indicator_pipeline/run/.gitkeep
+market_indicator_pipeline/web/config.yaml
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.duckdb
+*.db

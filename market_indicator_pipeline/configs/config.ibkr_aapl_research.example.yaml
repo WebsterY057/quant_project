@@ -1,0 +1,42 @@
+input:
+  duckdb_path: "output/full_20260707_20260807/ibkr_us_equity.duckdb"
+  schema: "raw"
+  table: "ibkr_stock_us_l1_trade"
+  symbol: "AAPL"
+  date_start: "2026-07-07"
+  date_end: "2026-08-07"
+  event_time_column: "ts_utc"
+  price_column: "trade_price"
+  size_column: "trade_size"
+  volume_event_filter: "trigger_field = 'last_size'"
+
+aggregation:
+  timezone: "UTC"
+  intervals:
+    - label: "1m"
+      duckdb_interval: "1 minute"
+    - label: "5m"
+      duckdb_interval: "5 minutes"
+
+indicators:
+  zigzag:
+    depth: 30
+    deviation_points: 3
+    backstep: 3
+    point_size: 0.01
+    show_unconfirmed: true
+    live_reversal_percent: 0.1
+    live_reversal_abs: 0.0
+  parabolic_sar:
+    step: 0.016
+    maximum: 0.20
+  heiken_ashi:
+    ma1_method: "SMMA"
+    ma1_period: 6
+    ma2_method: "LWMA"
+    ma2_period: 2
+
+output:
+  schema: "research"
+  table_prefix: "aapl_trade_bars"
+  export_dir: "output/full_20260707_20260807/research"
