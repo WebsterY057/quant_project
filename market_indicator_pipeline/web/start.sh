@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PORT="${AAPL_VIS_PORT:-5011}"
-HOST="${AAPL_VIS_HOST:-127.0.0.1}"
+HOST="${AAPL_VIS_HOST:-0.0.0.0}"
 LOG_DIR="$ROOT_DIR/logs"
 PID_FILE="$LOG_DIR/server_${PORT}.pid"
 LOG_FILE="$LOG_DIR/server_${PORT}.log"
