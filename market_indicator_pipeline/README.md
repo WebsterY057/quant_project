@@ -6,10 +6,10 @@
 
 | 板块 | 标的 | 来源 | 历史范围 | 存储 |
 |---|---|---|---|---|
-| 美股 | AAPL | IBKR / RustFS | 2026-07-07—2026-08-07 | DuckDB |
-| 代币化美股 | AAPLUSDT | Binance TradFi 永续历史 K 线 | 2026-07-07—2026-08-07 | SQLite |
-| 加密货币 | BTC-USDT | OKX 历史 K 线 | 2026-07-23—2026-07-30 | SQLite |
-| 外汇 | XAUUSD | Dukascopy ticks | 2026-05-29—2026-06-29 | SQLite |
+| 美股 | AAPL | IBKR / RustFS | 2026-08-01—2026-08-10 | DuckDB |
+| 代币化美股 | AAPLUSDT | Binance TradFi 永续历史 K 线 | 2026-08-01—2026-08-10 | SQLite |
+| 加密货币 | BTC-USDT | OKX 历史 K 线 | 2026-08-01—2026-08-10 | SQLite |
+| 外汇 | XAUUSD | Dukascopy ticks | 2026-08-01—2026-08-10 | SQLite |
 
 图表统一展示 Smoothed Heiken Ashi（SMMA6/LWMA2）、ZigZag（D30/Dev3/B3）和 Parabolic SAR（0.016/0.2）。
 

@@ -1,6 +1,6 @@
 symbol: XAUUSD
-start_date_utc: "2026-05-29"
-end_date_utc_exclusive: "2026-06-30"
+start_date_utc: "2026-08-01"
+end_date_utc_exclusive: "2026-08-11"
 
 download:
   base_url: "https://datafeed.dukascopy.com/datafeed"
@@ -15,7 +15,7 @@ decode:
   price_scale: 1000
 
 output:
-  output_dir: "outputs/dukascopy_xauusd_20260529_20260629"
-  sqlite_path: "outputs/dukascopy_xauusd_20260529_20260629/dukascopy_xauusd_ticks.sqlite"
+  output_dir: "outputs/dukascopy_xauusd_20260801_20260810"
+  sqlite_path: "outputs/dukascopy_xauusd_20260801_20260810/dukascopy_xauusd_ticks.sqlite"
   keep_raw_bi5: true
   batch_insert_rows: 50000

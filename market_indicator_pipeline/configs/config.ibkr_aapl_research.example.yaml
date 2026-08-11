@@ -1,10 +1,10 @@
 input:
-  duckdb_path: "output/full_20260707_20260807/ibkr_us_equity.duckdb"
+  duckdb_path: "output/full_20260801_20260810/ibkr_us_equity.duckdb"
   schema: "raw"
   table: "ibkr_stock_us_l1_trade"
   symbol: "AAPL"
-  date_start: "2026-07-07"
-  date_end: "2026-08-07"
+  date_start: "2026-08-01"
+  date_end: "2026-08-10"
   event_time_column: "ts_utc"
   price_column: "trade_price"
   size_column: "trade_size"
@@ -39,4 +39,4 @@ indicators:
 output:
   schema: "research"
   table_prefix: "aapl_trade_bars"
-  export_dir: "output/full_20260707_20260807/research"
+  export_dir: "output/full_20260801_20260810/research"

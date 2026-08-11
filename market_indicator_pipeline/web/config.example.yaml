@@ -16,8 +16,8 @@ boards:
     source_label: "IBKR · US EQUITY · L1 TRADE"
     backend: "remote_duckdb"
     tables: {1m: "research.aapl_trade_bars_1m", 5m: "research.aapl_trade_bars_5m"}
-    date_start: "2026-07-07"
-    date_end: "2026-08-07"
+    date_start: "2026-08-01"
+    date_end: "2026-08-10"
     max_points: 20000
   tokenized_equity:
     label: "代币化美股"
@@ -26,28 +26,28 @@ boards:
     backend: "okx_sqlite"
     sqlite_path: "../data/binance_aapl_tokenized.db"
     tables: {1m: "klines_1m", 5m: "klines_5m"}
-    date_start: "2026-07-07"
-    date_end: "2026-08-07"
+    date_start: "2026-08-01"
+    date_end: "2026-08-10"
     max_points: 20000
   crypto:
     label: "加密货币"
     symbol: "BTC-USDT"
     source_label: "OKX · CRYPTO · HISTORICAL CANDLES"
     backend: "okx_sqlite"
-    sqlite_path: "../data/okx_btc_history.db"
+    sqlite_path: "../data/okx_btc_history_20260801_20260810.db"
     tables: {1m: "klines_1m", 5m: "klines_5m"}
-    date_start: "2026-07-23"
-    date_end: "2026-07-30"
+    date_start: "2026-08-01"
+    date_end: "2026-08-10"
     max_points: 20000
   forex:
     label: "外汇"
     symbol: "XAUUSD"
     source_label: "DUKASCOPY · FOREX · TICK"
     backend: "local_sqlite"
-    sqlite_path: "../data/dukascopy_xauusd_ticks.sqlite"
+    sqlite_path: "../data/dukascopy_xauusd_20260801_20260810/dukascopy_xauusd_ticks.sqlite"
     tables: {1m: "bars_1m", 5m: "bars_5m"}
-    date_start: "2026-05-29"
-    date_end: "2026-06-29"
+    date_start: "2026-08-01"
+    date_end: "2026-08-10"
     max_points: 20000
 
 data:

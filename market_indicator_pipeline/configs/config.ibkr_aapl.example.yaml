@@ -11,8 +11,8 @@ source:
   timezone: "UTC"
 
 date_range:
-  start: "2026-07-07"
-  end: "2026-08-07"         # 含首含尾
+  start: "2026-08-01"
+  end: "2026-08-10"         # 含首含尾
 
 rustfs:
   endpoint_env: "RUSTFS_S3_ENDPOINT"
