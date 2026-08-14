@@ -65,3 +65,7 @@ indicators:
       1m: {depth: 30, deviation: 5, backstep: 3}
       5m: {depth: 12, deviation: 5, backstep: 3}
   parabolic_sar: {step: 0.016, maximum: 0.2}
+  entry_filter:
+    timezone: "Asia/Shanghai"
+    blackout_windows:
+      - {start: "20:00", end: "21:00", reason: "20:30 important release +/- 30 minutes"}
