@@ -56,5 +56,12 @@ data:
 
 indicators:
   heiken_ashi: {ma1_method: "SMMA", ma1_period: 6, ma2_method: "LWMA", ma2_period: 2}
-  zigzag: {depth: 30, deviation: 3, backstep: 3, price_tick_size: 0.01, show_unconfirmed: true, live_reversal_percent: 0.1, live_reversal_abs: 0.0}
+  zigzag:
+    price_tick_size: 0.01
+    show_unconfirmed: true
+    live_reversal_percent: 0.1
+    live_reversal_abs: 0.0
+    intervals:
+      1m: {depth: 30, deviation: 5, backstep: 3}
+      5m: {depth: 12, deviation: 5, backstep: 3}
   parabolic_sar: {step: 0.016, maximum: 0.2}
