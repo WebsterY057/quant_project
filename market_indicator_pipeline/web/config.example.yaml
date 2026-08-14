@@ -44,11 +44,11 @@ boards:
     symbol: "XAUUSD"
     source_label: "DUKASCOPY · FOREX · TICK"
     backend: "local_sqlite"
-    sqlite_path: "../data/dukascopy_xauusd_20260801_20260810/dukascopy_xauusd_ticks.sqlite"
+    sqlite_path: "../data/dukascopy_xauusd_20260713_20260813/dukascopy_xauusd_ticks.sqlite"
     tables: {1m: "bars_1m", 5m: "bars_5m"}
-    date_start: "2026-08-01"
-    date_end: "2026-08-10"
-    max_points: 20000
+    date_start: "2026-07-13"
+    date_end: "2026-08-13"
+    max_points: 40000
 
 data:
   default_board: "us_equity"

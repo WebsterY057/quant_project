@@ -189,6 +189,20 @@ def already_downloaded(conn: sqlite3.Connection, symbol: str, source_hour: str) 
     return bool(row and row[0] in {"ok", "missing"})
 
 
+def is_scheduled_closed(hour: dt.datetime, cfg: dict[str, Any]) -> bool:
+    market = cfg.get("market_hours", {})
+    friday_close = int(market.get("friday_close_hour_utc", 24))
+    sunday_open = int(market.get("sunday_open_hour_utc", 0))
+    daily_closed = {int(value) for value in market.get("daily_closed_hours_utc", [])}
+    weekday = hour.weekday()
+    return (
+        weekday == 5
+        or (weekday == 4 and hour.hour >= friday_close)
+        or (weekday == 6 and hour.hour < sunday_open)
+        or hour.hour in daily_closed
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="outputs/dukascopy_xauusd_config.yaml")
@@ -226,6 +240,21 @@ def main() -> None:
             if already_downloaded(conn, symbol, source_hour):
                 continue
             url = build_tick_url(download_cfg["base_url"], symbol, hour)
+            if is_scheduled_closed(hour, cfg):
+                missing_hours += 1
+                conn.execute(
+                    """INSERT OR REPLACE INTO download_hours (
+                           symbol, source_hour_utc, source_url, status, payload_bytes,
+                           tick_count, downloaded_at_utc, error
+                       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (
+                        symbol, source_hour, url, "missing", None, 0,
+                        dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+                        "scheduled forex market closure",
+                    ),
+                )
+                conn.commit()
+                continue
             try:
                 payload = fetch_bytes(
                     url,

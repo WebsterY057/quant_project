@@ -172,7 +172,7 @@ def index():
 
 def local_sqlite_bars(board: dict[str, Any], interval: str, date_start: str, date_end: str) -> dict[str, Any]:
     table = board["tables"][interval]
-    max_points = max(100, min(int(board["max_points"]), 20000))
+    max_points = max(100, min(int(board["max_points"]), 50000))
     uri = f"file:{Path(board['sqlite_path']).expanduser()}?mode=ro"
     con = sqlite3.connect(uri, uri=True)
     try:
