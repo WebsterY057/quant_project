@@ -67,5 +67,6 @@ indicators:
   parabolic_sar: {step: 0.016, maximum: 0.2}
   entry_filter:
     timezone: "Asia/Shanghai"
+    max_bars_after_parabolic_turn: 10
     blackout_windows:
       - {start: "20:00", end: "21:00", reason: "20:30 important release +/- 30 minutes"}
