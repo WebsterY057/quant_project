@@ -1,6 +1,6 @@
 # Market Indicator Pipeline
 
-当前正式初版补丁：`v1.0.1`。策略口径、固定每笔 100 USD 的资金假设和因果性说明见 [docs/STRATEGY_V1.md](docs/STRATEGY_V1.md)。
+当前策略版本：`v1.1.0`。策略口径、固定每笔 100 USD 的资金假设和因果性说明见 [docs/STRATEGY_V1.md](docs/STRATEGY_V1.md)。
 
 从原始行情采集、历史回补、K 线聚合、MT4 指标计算到四板块可视化的可复现流水线。
 
