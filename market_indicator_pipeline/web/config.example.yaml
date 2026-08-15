@@ -72,8 +72,7 @@ indicators:
       - {start: "20:00", end: "21:00", reason: "20:30 important release +/- 30 minutes"}
 
 backtest:
-  initial_capital_usd: 100.0
-  capital_fraction_per_trade: 1.0
+  notional_per_trade_usd: 100.0
   fee_rate_per_side: 0.0
   slippage_rate_per_side: 0.0
   volume_basis: "entry_plus_exit_notional"
