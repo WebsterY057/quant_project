@@ -24,20 +24,20 @@ boards:
     symbol: "AAPLUSDT"
     source_label: "BINANCE · TRADIFI PERPETUAL"
     backend: "okx_sqlite"
-    sqlite_path: "../data/binance_aapl_tokenized.db"
+    sqlite_path: "../data/binance_aapl_tokenized_20260713_20260813.db"
     tables: {1m: "klines_1m", 5m: "klines_5m"}
-    date_start: "2026-08-01"
-    date_end: "2026-08-10"
+    date_start: "2026-07-13"
+    date_end: "2026-08-13"
     max_points: 20000
   crypto:
     label: "加密货币"
     symbol: "BTC-USDT"
     source_label: "OKX · CRYPTO · HISTORICAL CANDLES"
     backend: "okx_sqlite"
-    sqlite_path: "../data/okx_btc_history_20260801_20260810.db"
+    sqlite_path: "../data/okx_btc_history_20260713_20260813.db"
     tables: {1m: "klines_1m", 5m: "klines_5m"}
-    date_start: "2026-08-01"
-    date_end: "2026-08-10"
+    date_start: "2026-07-13"
+    date_end: "2026-08-13"
     max_points: 20000
   forex:
     label: "外汇"
