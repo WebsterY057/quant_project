@@ -73,8 +73,6 @@ indicators:
 
 backtest:
   notional_per_trade_usd: 10.0
-  loss_multipliers: [1, 1, 2, 3, 5, 8]
-  multiplier_overflow: "repeat_last"
   fee_rate_per_side: 0.0
   slippage_rate_per_side: 0.0
   volume_basis: "entry_plus_exit_notional"
