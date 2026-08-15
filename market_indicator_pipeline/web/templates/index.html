@@ -35,12 +35,14 @@
     .trade-table th { position:sticky; top:0; background:#15202b; color:#8b9bab; z-index:1; }
     .trade-table th:nth-child(-n+3),.trade-table td:nth-child(-n+3) { text-align:left; }
     .profit-positive { color:#28c76f; } .profit-negative { color:#ff5c5c; }
+    .charts-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; }
     .chart-card { border: 1px solid #243241; background: #111a24; margin-top: 12px; }
     .chart-header { display: flex; justify-content: space-between; padding: 12px 16px 0; font-size: 14px; }
     .chart-header span:last-child { color: #8b9bab; }
-    .chart { height: 560px; width: 100%; }
+    .chart { height: 520px; width: 100%; }
     .detail { min-height: 35px; border-top: 1px solid #243241; padding: 9px 16px; color: #8b9bab; font-size: 12px; }
     .error { color: #ff7b72 !important; }
+    @media (max-width: 1000px) { .charts-grid { grid-template-columns:1fr; } }
     @media (max-width: 720px) { .shell { padding: 10px; } .chart { height: 440px; } .metrics { grid-template-columns:repeat(2,1fr); } }
   </style>
 </head>
@@ -59,14 +61,16 @@
     <div id="status" role="status"></div>
     <section id="metrics" class="metrics" aria-label="策略回测统计"></section>
     <details id="trade-details" class="trade-details"><summary id="trade-summary">交易明细（0 笔）</summary><div class="trade-table-wrap"><table class="trade-table"><thead><tr><th>#</th><th>方向</th><th>进场时间</th><th>进场价</th><th>止损</th><th>止盈</th><th>出场时间</th><th>出场价</th><th>结果</th><th>盈亏</th><th>手续费</th></tr></thead><tbody id="trade-rows"></tbody></table></div></details>
-    <section class="chart-card">
-      <div class="chart-header"><span>1 分钟 K 线</span><span id="count-1m">0 bars</span></div>
-      <div id="chart-1m" class="chart"></div><div id="detail-1m" class="detail">移动鼠标查看 1m OHLCV 与指标</div>
-    </section>
-    <section class="chart-card">
-      <div class="chart-header"><span>5 分钟 K 线</span><span id="count-5m">0 bars</span></div>
-      <div id="chart-5m" class="chart"></div><div id="detail-5m" class="detail">移动鼠标查看 5m OHLCV 与指标</div>
-    </section>
+    <div class="charts-grid">
+      <section class="chart-card">
+        <div class="chart-header"><span>1 分钟 K 线</span><span id="count-1m">0 bars</span></div>
+        <div id="chart-1m" class="chart"></div><div id="detail-1m" class="detail">移动鼠标查看 1m OHLCV 与指标</div>
+      </section>
+      <section class="chart-card">
+        <div class="chart-header"><span>5 分钟 K 线</span><span id="count-5m">0 bars</span></div>
+        <div id="chart-5m" class="chart"></div><div id="detail-5m" class="detail">移动鼠标查看 5m OHLCV 与指标</div>
+      </section>
+    </div>
   </main>
 <script>
 const indicatorConfig={{ indicator_config|tojson }};
