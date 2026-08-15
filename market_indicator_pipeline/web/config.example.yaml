@@ -18,7 +18,7 @@ boards:
     tables: {1m: "research.aapl_trade_bars_1m", 5m: "research.aapl_trade_bars_5m"}
     date_start: "2026-08-01"
     date_end: "2026-08-10"
-    max_points: 20000
+    max_points: 50000
   tokenized_equity:
     label: "代币化美股"
     symbol: "AAPLUSDT"
@@ -28,7 +28,7 @@ boards:
     tables: {1m: "klines_1m", 5m: "klines_5m"}
     date_start: "2026-07-13"
     date_end: "2026-08-13"
-    max_points: 20000
+    max_points: 50000
   crypto:
     label: "加密货币"
     symbol: "BTC-USDT"
@@ -38,7 +38,7 @@ boards:
     tables: {1m: "klines_1m", 5m: "klines_5m"}
     date_start: "2026-07-13"
     date_end: "2026-08-13"
-    max_points: 20000
+    max_points: 50000
   forex:
     label: "外汇"
     symbol: "XAUUSD"
@@ -70,3 +70,11 @@ indicators:
     max_move_from_parabolic_turn_percent: 0.30
     blackout_windows:
       - {start: "20:00", end: "21:00", reason: "20:30 important release +/- 30 minutes"}
+
+backtest:
+  initial_capital_usd: 100.0
+  capital_fraction_per_trade: 1.0
+  fee_rate_per_side: 0.0
+  slippage_rate_per_side: 0.0
+  volume_basis: "entry_plus_exit_notional"
+  open_position_valuation: "excluded"
