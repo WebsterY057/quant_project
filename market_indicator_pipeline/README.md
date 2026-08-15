@@ -1,6 +1,6 @@
 # Market Indicator Pipeline
 
-当前研究版本：`v1.3.0`。当前处于原始进场候选与趋势组合拆分阶段，口径和因果性说明见 [docs/STRATEGY_V1.md](docs/STRATEGY_V1.md)。
+当前研究版本：`v1.3.1`。当前处于原始进场候选与趋势组合拆分阶段，口径和因果性说明见 [docs/STRATEGY_V1.md](docs/STRATEGY_V1.md)。
 
 从原始行情采集、历史回补、K 线聚合、MT4 指标计算到四板块可视化的可复现流水线。
 
